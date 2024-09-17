@@ -1,35 +1,4 @@
 <div class="container">
-  {{ title }}
-  {{ dataUser.name }}
-  {{ dataUser.address[0].zipcode }}
-  <div>hi</div>
-
-  <div *ngFor="let address of dataUser.address">
-    {{ address.city }}
-  </div>
-  <app-button
-    [text]="labelButton"
-    (clickThis)="receiveFromChild($event)"
-  ></app-button>
-  <!-- <app-button></app-button> -->
-  <input type="text" [(ngModel)]="name" />
-  <div>
-    {{ name }}
-  </div>
-
-  <form [formGroup]="addUserForm" (submit)="onSubmit()">
-    <div>
-      <label for="name">Name</label>
-      <input type="text" name="name" formControlName="name" (keydown)="checkOnChange()"/>
-      <div class="validation-error" *ngIf="addUserForm.get('name')?.errors && addUserForm.get('name')">Please input phone</div>
-    </div>
-    <div>
-      <label for="phone">Phone</label>
-      <input type="text" name="phone" formControlName="phoneNumber" />
-      <div class="validation-error" *ngIf="addUserForm.get('phoneNumber')?.invalid">Please input phone</div>
-      <div class="validation-error" *ngIf="addUserForm?.get('phoneNumber')?.errors?.['minLength']">Please input minimal 9 digits</div>
-      <div class="validation-error" *ngIf="addUserForm?.get('phoneNumber')?.errors?.['maxLength']">Maximum 14 digits</div>
-    </div>
-    <button type="submit" [disabled]="addUserForm.invalid">Submit</button>
-  </form>
+  <app-form (pushNewUser)="receiveUser($event)"></app-form>
+  <app-user-table [users]="userData"></app-user-table>
 </div>

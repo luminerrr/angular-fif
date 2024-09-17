@@ -11,6 +11,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { FormComponent } from './form/form.component';
+import { UserTableComponent } from './user-table/user-table.component';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,8 @@ import {
     ButtonComponent,
     FormsModule,
     ReactiveFormsModule,
+    FormComponent,
+    UserTableComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -28,18 +32,7 @@ import {
 export class AppComponent implements OnInit {
   title = 'angular-fif';
   labelButton!: string;
-  dataUser: DataUser = {
-    name: 'John Doe',
-    age: 30,
-    address: [
-      {
-        city: 'jakarta',
-        district: '9',
-        province: 'apaajah',
-        zipcode: 1,
-      },
-    ],
-  };
+  userData!: Array<DataUser>;
   name: string = '';
   addUserForm!: FormGroup;
 
@@ -47,17 +40,41 @@ export class AppComponent implements OnInit {
     this.title = generateService.generateId();
 
     this.addUserForm = new FormGroup({
-      name: new FormControl('', [Validators.email, Validators.required]),
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      city: new FormControl('', [Validators.required]),
+
+
       phoneNumber: new FormControl('', [
         Validators.required,
         Validators.minLength(9),
         Validators.maxLength(14)
       ]),
     });
+
+    this.userData = [
+      {
+        name: "Fariz",
+        email: "fariz@mail.com",
+        address: {
+          city: "Tangerang",
+          province: "Banten",
+          zipcode: 10205
+        }
+      },
+      {
+        name: "Rizky",
+        email: "Rizky@mail.com",
+        address: {
+          city: "Tangerang Selatan",
+          province: "Banten",
+          zipcode: 10310
+        }
+      }
+    ]
   }
 
   ngOnInit(): void {
-    console.log(this.dataUser);
     console.log('barudak');
   }
 
@@ -74,4 +91,9 @@ export class AppComponent implements OnInit {
     console.log('halo from form');
     console.log(this.addUserForm.get('phoneNumber')?.errors)
   }
+
+  receiveUser(event: DataUser) {
+    console.log(event);
+    this.userData.push(event)
+  } 
 }
