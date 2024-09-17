@@ -1,0 +1,35 @@
+<table>
+    <thead>
+        <tr>
+            <th>
+                No
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Address
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- TODO: Input table data here, loop it -->
+        <tr *ngFor="let user of users; index as i">
+            <td>
+                {{i}}
+            </td>
+            <td>
+                {{user.name}}
+            </td>
+            <td>
+                {{user.email}}
+            </td>
+            <td>
+                {{user.address.city}}, {{user.address.province}}, {{user.address.zipcode}}
+            </td>
+        </tr>
+    </tbody>
+</table>
