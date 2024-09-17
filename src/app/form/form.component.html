@@ -1,0 +1,69 @@
+<form [formGroup]="addUserForm" (submit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" name="name" formControlName="name" />
+    <div
+      class="validation-error"
+      *ngIf="
+        addUserForm.get('name')?.errors && addUserForm.get('name')?.touched
+      "
+    >
+      Please input name
+    </div>
+    <div
+      class="validation-error"
+      *ngIf="addUserForm.get('name')?.errors?.['minLength'] && addUserForm.get('name')?.touched"
+    >
+      Minimum character is 3
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" name="email" formControlName="email" />
+    <div
+      class="validation-error"
+      *ngIf="addUserForm.get('email')?.errors?.['email'] && addUserForm.get('email')?.touched"
+    >
+      Please input email
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" name="city" formControlName="city" />
+    <div
+      class="validation-error"
+      *ngIf="
+        addUserForm.get('city')?.errors && addUserForm.get('city')?.touched
+      "
+    >
+      Please input City
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="province">Province</label>
+    <input type="text" name="province" formControlName="province" />
+    <div
+      class="validation-error"
+      *ngIf="
+        addUserForm.get('province')?.errors &&
+        addUserForm.get('province')?.touched
+      "
+    >
+      Please input Province
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="zipCode">Zip Code</label>
+    <input type="text" name="zipCode" formControlName="zipCode" />
+    <div
+      class="validation-error"
+      *ngIf="
+        addUserForm.get('zipCode')?.errors &&
+        addUserForm.get('zipCode')?.touched
+      "
+    >
+      Please input Zip Code
+    </div>
+  </div>
+  <button type="submit" [disabled]="addUserForm.invalid">Submit</button>
+</form>
