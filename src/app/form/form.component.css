@@ -1,0 +1,35 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: rgb(233, 233, 233);
+  padding: 32px;
+
+  .form-group {
+    label {
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+}
+
+input {
+  height: 24px;
+  border-width: 1px;
+  border-radius: 6px;
+  border-color: rgb(75, 75, 75);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-submit {
+  height: 48px;
+  margin: 0 40px;
+  font-weight: 700;
+  font-size: 24px;
+  margin-top: 12px;
+}
