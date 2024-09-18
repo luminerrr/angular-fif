@@ -1,35 +1,53 @@
 <table class="zui-table">
-    <thead>
-        <tr>
-            <th>
-                No
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Address
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- TODO: Input table data here, loop it -->
-        <tr *ngFor="let user of users; index as i">
-            <td>
-                {{i + 1}}
-            </td>
-            <td>
-                {{user.name}}
-            </td>
-            <td>
-                {{user.email}}
-            </td>
-            <td>
-                {{user.address.city}}, {{user.address.province}}, {{user.address.zipcode}}
-            </td>
-        </tr>
-    </tbody>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>Payment Deadline</th>
+      <th>Action</th>
+      <th>Completed?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- TODO: Input table data here, loop it -->
+    <tr
+      *ngFor="let user of users; index as i"
+      [ngClass]="user.isChecked ? 'striked' : ''"
+      [ngStyle]="{
+        'background-color':
+        todayDate.getDate() -  user.paymentDeadline.getDate() >= 3 ? 'red' : ''
+      }"
+    >
+      <td>
+        {{ i + 1 }}
+      </td>
+      <td>
+        {{ user.name }}
+      </td>
+      <td>
+        {{ user.email }}
+      </td>
+      <td>
+        {{ user.address.city }}, {{ user.address.province }},
+        {{ user.address.zipcode }}
+      </td>
+      <td>
+        {{ user.paymentDeadline | date }}
+      </td>
+      <td>
+        <!-- TODO: Change to trash icon -->
+        <!-- <img src="../assets/delete.png" /> -->
+        <button (click)="deleteUser(i)">Delete</button>
+      </td>
+      <td>
+        <input
+          type="checkbox"
+          [(ngModel)]="user.isChecked"
+          (change)="onChangeCheckbox(i, $event)"
+        />
+      </td>
+    </tr>
+  </tbody>
 </table>

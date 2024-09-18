@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DataUser } from './app.model';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 import { FormComponent } from './form/form.component';
 import { UserTableComponent } from './user-table/user-table.component';
+import { UserdataService } from './userdata.service';
 
 @Component({
   selector: 'app-root',
@@ -29,53 +30,24 @@ import { UserTableComponent } from './user-table/user-table.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges {
   title = 'angular-fif';
   labelButton!: string;
   userData!: Array<DataUser>;
   name: string = '';
   addUserForm!: FormGroup;
 
-  constructor(private generateService: GenerateRandomIdService) {
-    this.title = generateService.generateId();
-
-    this.addUserForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      city: new FormControl('', [Validators.required]),
-
-
-      phoneNumber: new FormControl('', [
-        Validators.required,
-        Validators.minLength(9),
-        Validators.maxLength(14)
-      ]),
-    });
-
-    this.userData = [
-      {
-        name: "Fariz",
-        email: "fariz@mail.com",
-        address: {
-          city: "Tangerang",
-          province: "Banten",
-          zipcode: 10205
-        }
-      },
-      {
-        name: "Rizky",
-        email: "Rizky@mail.com",
-        address: {
-          city: "Tangerang Selatan",
-          province: "Banten",
-          zipcode: 10310
-        }
-      }
-    ]
+  constructor(private userService: UserdataService) {
+    this.userData = userService.getUsers();
   }
 
   ngOnInit(): void {
-    console.log('barudak');
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('asu')
+    console.log(changes)
   }
 
   receiveFromChild(event: string): void {
@@ -93,7 +65,6 @@ export class AppComponent implements OnInit {
   }
 
   receiveUser(event: DataUser) {
-    console.log(event);
-    this.userData.push(event)
+    this.userService.addNewUser(event)
   } 
 }

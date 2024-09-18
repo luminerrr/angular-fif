@@ -28,6 +28,24 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="paymentDeadline">Payment Deadline</label>
+    <input
+      type="date"
+      name="paymentDeadline"
+      formControlName="paymentDeadline"
+      [min]="minDate"
+    />
+    <div
+      class="validation-error"
+      *ngIf="
+        addUserForm.get('paymentDeadline')?.errors &&
+        addUserForm.get('paymentDeadline')?.touched
+      "
+    >
+      Please input City
+    </div>
+  </div>
+  <div class="form-group">
     <label for="city">City</label>
     <input type="text" name="city" formControlName="city" />
     <div
@@ -65,5 +83,7 @@
       Please input Zip Code
     </div>
   </div>
-  <button type="submit" class="btn-submit" [disabled]="addUserForm.invalid">Submit</button>
+  <button type="submit" class="btn-submit" [disabled]="addUserForm.invalid">
+    Submit
+  </button>
 </form>

@@ -1,7 +1,9 @@
 export interface DataUser {
     name: string;
     email: string;
+    paymentDeadline: Date;
     address: Address;
+    isChecked: Boolean;
 }
 
 interface Address {
