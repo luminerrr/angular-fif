@@ -15,7 +15,7 @@ export const userData: Array<DataUser> = [
   {
     name: 'Rizky',
     email: 'Rizky@mail.com',
-    paymentDeadline: new Date(2024, 8, 12),
+    paymentDeadline: new Date(2024, 8, 20),
     address: {
       city: 'Tangerang Selatan',
       province: 'Banten',
