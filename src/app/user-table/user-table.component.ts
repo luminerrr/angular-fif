@@ -5,11 +5,11 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { DataUser } from '../app.model';
 import { CommonModule } from '@angular/common';
-import { UserdataService } from '../userdata.service';
+import { UserdataService } from '../shared/userdata.service';
 import { FormsModule } from '@angular/forms';
-import { SnackbarService } from '../snackbar.service';
+import { SnackbarService } from '../shared/snackbar.service';
+import { DataUser } from '../models/app.model';
 
 @Component({
   selector: 'app-user-table',

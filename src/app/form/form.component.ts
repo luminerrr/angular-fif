@@ -6,8 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { DataUser } from '../app.model';
-import { SnackbarService } from '../snackbar.service';
+import { DataUser } from '../models/app.model';
+import { SnackbarService } from '../shared/snackbar.service';
 
 @Component({
   selector: 'app-form',

@@ -1,9 +1,9 @@
 import { Component, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { DataUser } from './app.model';
+import { DataUser } from './models/app.model';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
-import { GenerateRandomIdService } from './generate-random-id.service';
+import { GenerateRandomIdService } from './shared/generate-random-id.service';
 import {
   FormControl,
   FormGroup,
@@ -13,7 +13,7 @@ import {
 } from '@angular/forms';
 import { FormComponent } from './form/form.component';
 import { UserTableComponent } from './user-table/user-table.component';
-import { UserdataService } from './userdata.service';
+import { UserdataService } from './shared/userdata.service';
 
 @Component({
   selector: 'app-root',

@@ -1,4 +1,4 @@
-import { DataUser } from './app.model';
+import { DataUser } from './models/app.model';
 
 export const userData: Array<DataUser> = [
   {
