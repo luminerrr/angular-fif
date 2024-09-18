@@ -1,4 +1,6 @@
-<table class="zui-table">
+<div *ngIf="users.length === 0" class="no-data">No Data available</div>
+
+<table class="zui-table" *ngIf="users.length !== 0">
   <thead>
     <tr>
       <th>No</th>
@@ -17,7 +19,15 @@
       [ngClass]="user.isChecked ? 'striked' : ''"
       [ngStyle]="{
         'background-color':
-        todayDate.getDate() -  user.paymentDeadline.getDate() >= 3 ? 'red' : ''
+          dateDifferenceAbs(user.paymentDeadline) <= 3 &&
+          dateDifference(user.paymentDeadline) <= 0
+            ? 'red'
+            : '',
+        color:
+          dateDifferenceAbs(user.paymentDeadline) <= 3 &&
+          dateDifference(user.paymentDeadline) <= 0
+            ? '#ffff'
+            : ''
       }"
     >
       <td>
@@ -38,7 +48,7 @@
       </td>
       <td>
         <!-- TODO: Change to trash icon -->
-        <!-- <img src="../assets/delete.png" /> -->
+        <!-- <img src="assets/" /> -->
         <button (click)="deleteUser(i)">Delete</button>
       </td>
       <td>

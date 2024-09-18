@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { DataUser } from '../app.model';
+import { SnackbarService } from '../snackbar.service';
 
 @Component({
   selector: 'app-form',
@@ -20,7 +21,7 @@ export class FormComponent {
   minDate!: string;
   @Output() pushNewUser = new EventEmitter<DataUser>();
 
-  constructor() {
+  constructor(private snackbar: SnackbarService) {
     this.addUserForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -38,18 +39,24 @@ export class FormComponent {
   }
 
   onSubmit() {
-    let formDate = this.addUserForm.get('paymentDeadline')?.value.split('-')
-    const date = new Date(formDate[0], formDate[1] - 1, formDate[2])
-    this.pushNewUser.emit({
-      name: this.addUserForm.get('name')?.value,
-      email: this.addUserForm.get('email')?.value,
-      paymentDeadline: date,
-      address: {
-        city: this.addUserForm.get('city')?.value,
-        province: this.addUserForm.get('province')?.value,
-        zipcode: this.addUserForm.get('zipCode')?.value
-      },
-      isChecked: false,
-    })
+    try {
+      let formDate = this.addUserForm.get('paymentDeadline')?.value.split('-');
+      const date = new Date(formDate[0], formDate[1] - 1, formDate[2]);
+      this.pushNewUser.emit({
+        name: this.addUserForm.get('name')?.value,
+        email: this.addUserForm.get('email')?.value,
+        paymentDeadline: date,
+        address: {
+          city: this.addUserForm.get('city')?.value,
+          province: this.addUserForm.get('province')?.value,
+          zipcode: this.addUserForm.get('zipCode')?.value,
+        },
+        isChecked: false,
+      });
+      this.snackbar.openSnackBar('Success add new user', '');
+    } catch (error) {
+      this.snackbar.openSnackBar("Error adding new user", "")
+    }
+    
   }
 }

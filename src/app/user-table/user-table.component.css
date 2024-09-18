@@ -25,3 +25,10 @@
     text-decoration: line-through;
     background: rgb(189, 189, 189);
 }
+
+.no-data {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
