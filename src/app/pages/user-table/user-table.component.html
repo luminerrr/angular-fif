@@ -1,0 +1,70 @@
+<div class="container-table">
+  <h2>Table User</h2>
+  <button (click)="router.navigate(['add'])" class="new-data">Add new data</button>
+  <div *ngIf="users.length === 0" class="no-data">
+    {{ isLoading ? "Loading..." : "No Data available" }}
+  </div>
+  <table class="zui-table" *ngIf="users.length !== 0">
+    <div class="table-loading" *ngIf="isLoading"></div>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Payment Deadline</th>
+        <th>Action</th>
+        <th>Completed?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- TODO: Input table data here, loop it -->
+      <!-- [ngStyle]="{
+          'background-color':
+            dateDifferenceAbs(user.paymentDeadline) <= 3 &&
+            dateDifference(user.paymentDeadline) <= 0
+              ? 'red'
+              : '',
+          color:
+            dateDifferenceAbs(user.paymentDeadline) <= 3 &&
+            dateDifference(user.paymentDeadline) <= 0
+              ? 'white'
+              : ''
+        }" -->
+      <tr
+        *ngFor="let user of users; index as i"
+        [ngClass]="user.isChecked ? 'striked' : ''"
+      >
+        <td (click)="router.navigate(['/edit/' + user.id])">
+          {{ user.id }}
+        </td>
+        <td (click)="router.navigate(['/edit/' + user.id])">
+          {{ user.name }}
+        </td>
+        <td (click)="router.navigate(['/edit/' + user.id])">
+          {{ user.email }}
+        </td>
+        <td (click)="router.navigate(['/edit/' + user.id])">
+          {{ user.city }}, {{ user.province }},
+          {{ user.zipcode }}
+        </td>
+        <td (click)="router.navigate(['/edit/' + user.id])">
+          {{ user.paymentDeadline | date }}
+        </td>
+        <td style="z-index: 999">
+          <!-- TODO: Change to trash icon -->
+          <button (click)="deleteUser(user?.id)" style="z-index: 999">
+            Delete
+          </button>
+        </td>
+        <td>
+          <input
+            type="checkbox"
+            [(ngModel)]="user.isChecked"
+            (change)="onChangeCheckbox(i, $event)"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,10 +1,14 @@
+table {
+    position: relative;
+}
+
 .zui-table {
     border: solid 1px #DDEEEE;
     border-collapse: collapse;
     border-spacing: 0;
     font: normal 13px Arial, sans-serif;
     width: 100%;
-    margin-top: 64px;
+    overflow-y: unset;
 }
 .zui-table thead th {
     background-color: #DDEFEF;
@@ -29,4 +33,41 @@
     display: flex;
     justify-content: center;
     margin-top: 48px;
+}
+
+tr:hover {
+    cursor: pointer;
+    background-color: #e4e4e4;
+}
+
+tr button {
+    cursor: pointer;
+}
+
+tr button:hover {
+    cursor: pointer;
+    background-color: #d1d1d1;
+}
+
+.table-loading {
+    background: #616161;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 20;
+}
+
+.container-table {
+    display: flex !important;
+    flex-direction: column;
+    padding: 72px;
+    gap: 12px;
+}
+
+.new-data {
+    height: 48px;
+    width: 12rem;
+    align-self: flex-end;
 }
