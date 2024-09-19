@@ -1,13 +1,12 @@
 export interface DataUser {
-    name: string;
-    email: string;
-    paymentDeadline: Date;
-    address: Address;
-    isChecked: Boolean;
-}
-
-interface Address {
-    province: string;
-    city: string;
-    zipcode: number;
+  name: string;
+  email: string;
+  paymentDeadline: Date;
+  province: string;
+  city: string;
+  zipcode: number;
+  isChecked: Boolean;
+  basicSalary: string;
+  age: number;
+  id?: string;
 }
