@@ -83,7 +83,34 @@
       Please input Zip Code
     </div>
   </div>
-  <button type="submit" class="btn-submit" [disabled]="addUserForm.invalid">
-    Submit
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="number" name="age" formControlName="age" />
+    <div
+      class="validation-error"
+      *ngIf="addUserForm.get('age')?.errors && addUserForm.get('age')?.touched"
+    >
+      Please input Age
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="basicSalary">Basic Salary</label>
+    <input type="text" name="basicSalary" formControlName="basicSalary" />
+    <div
+      class="validation-error"
+      *ngIf="
+        addUserForm.get('basicSalary')?.errors &&
+        addUserForm.get('basicSalary')?.touched
+      "
+    >
+      Please input basic salary
+    </div>
+  </div>
+  <button
+    type="submit"
+    class="btn-submit"
+    [disabled]="addUserForm.invalid || isLoading"
+  >
+    {{ isLoading ? "loading..." : "Submit " }}
   </button>
 </form>
