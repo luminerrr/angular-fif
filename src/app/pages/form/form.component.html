@@ -1,116 +1,121 @@
-<form [formGroup]="addUserForm" (submit)="onSubmit()">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" name="name" formControlName="name" />
-    <div
-      class="validation-error"
-      *ngIf="
-        addUserForm.get('name')?.errors && addUserForm.get('name')?.touched
-      "
-    >
-      Please input name
+<div class="container">
+  <h1>{{pathId ? "Edit" : "Add"}} User</h1>
+  <form [formGroup]="addUserForm" (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" name="name" formControlName="name" />
+      <div
+        class="validation-error"
+        *ngIf="
+          addUserForm.get('name')?.errors && addUserForm.get('name')?.touched
+        "
+      >
+        Please input name
+      </div>
+      <div
+        class="validation-error"
+        *ngIf="addUserForm.get('name')?.errors?.['minLength'] && addUserForm.get('name')?.touched"
+      >
+        Minimum character is 3
+      </div>
     </div>
-    <div
-      class="validation-error"
-      *ngIf="addUserForm.get('name')?.errors?.['minLength'] && addUserForm.get('name')?.touched"
-    >
-      Minimum character is 3
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" name="email" formControlName="email" />
+      <div
+        class="validation-error"
+        *ngIf="addUserForm.get('email')?.errors?.['email'] && addUserForm.get('email')?.touched"
+      >
+        Please input email
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" name="email" formControlName="email" />
-    <div
-      class="validation-error"
-      *ngIf="addUserForm.get('email')?.errors?.['email'] && addUserForm.get('email')?.touched"
-    >
-      Please input email
+    <div class="form-group">
+      <label for="paymentDeadline">Payment Deadline</label>
+      <input
+        type="date"
+        name="paymentDeadline"
+        formControlName="paymentDeadline"
+        [min]="minDate"
+      />
+      <div
+        class="validation-error"
+        *ngIf="
+          addUserForm.get('paymentDeadline')?.errors &&
+          addUserForm.get('paymentDeadline')?.touched
+        "
+      >
+        Please input City
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="paymentDeadline">Payment Deadline</label>
-    <input
-      type="date"
-      name="paymentDeadline"
-      formControlName="paymentDeadline"
-      [min]="minDate"
-    />
-    <div
-      class="validation-error"
-      *ngIf="
-        addUserForm.get('paymentDeadline')?.errors &&
-        addUserForm.get('paymentDeadline')?.touched
-      "
-    >
-      Please input City
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" name="city" formControlName="city" />
+      <div
+        class="validation-error"
+        *ngIf="
+          addUserForm.get('city')?.errors && addUserForm.get('city')?.touched
+        "
+      >
+        Please input City
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="city">City</label>
-    <input type="text" name="city" formControlName="city" />
-    <div
-      class="validation-error"
-      *ngIf="
-        addUserForm.get('city')?.errors && addUserForm.get('city')?.touched
-      "
-    >
-      Please input City
+    <div class="form-group">
+      <label for="province">Province</label>
+      <input type="text" name="province" formControlName="province" />
+      <div
+        class="validation-error"
+        *ngIf="
+          addUserForm.get('province')?.errors &&
+          addUserForm.get('province')?.touched
+        "
+      >
+        Please input Province
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="province">Province</label>
-    <input type="text" name="province" formControlName="province" />
-    <div
-      class="validation-error"
-      *ngIf="
-        addUserForm.get('province')?.errors &&
-        addUserForm.get('province')?.touched
-      "
-    >
-      Please input Province
+    <div class="form-group">
+      <label for="zipCode">Zip Code</label>
+      <input type="text" name="zipCode" formControlName="zipCode" />
+      <div
+        class="validation-error"
+        *ngIf="
+          addUserForm.get('zipCode')?.errors &&
+          addUserForm.get('zipCode')?.touched
+        "
+      >
+        Please input Zip Code
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="zipCode">Zip Code</label>
-    <input type="text" name="zipCode" formControlName="zipCode" />
-    <div
-      class="validation-error"
-      *ngIf="
-        addUserForm.get('zipCode')?.errors &&
-        addUserForm.get('zipCode')?.touched
-      "
-    >
-      Please input Zip Code
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="number" name="age" formControlName="age" />
+      <div
+        class="validation-error"
+        *ngIf="
+          addUserForm.get('age')?.errors && addUserForm.get('age')?.touched
+        "
+      >
+        Please input Age
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="age">Age</label>
-    <input type="number" name="age" formControlName="age" />
-    <div
-      class="validation-error"
-      *ngIf="addUserForm.get('age')?.errors && addUserForm.get('age')?.touched"
-    >
-      Please input Age
+    <div class="form-group">
+      <label for="basicSalary">Basic Salary</label>
+      <input type="text" name="basicSalary" formControlName="basicSalary" />
+      <div
+        class="validation-error"
+        *ngIf="
+          addUserForm.get('basicSalary')?.errors &&
+          addUserForm.get('basicSalary')?.touched
+        "
+      >
+        Please input basic salary
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="basicSalary">Basic Salary</label>
-    <input type="text" name="basicSalary" formControlName="basicSalary" />
-    <div
-      class="validation-error"
-      *ngIf="
-        addUserForm.get('basicSalary')?.errors &&
-        addUserForm.get('basicSalary')?.touched
-      "
+    <button
+      type="submit"
+      class="btn-submit"
+      [disabled]="addUserForm.invalid || isLoading"
     >
-      Please input basic salary
-    </div>
-  </div>
-  <button
-    type="submit"
-    class="btn-submit"
-    [disabled]="addUserForm.invalid || isLoading"
-  >
-    {{ isLoading ? "loading..." : "Submit " }}
-  </button>
-</form>
+      {{ isLoading ? "loading..." : "Submit " }}
+    </button>
+  </form>
+</div>

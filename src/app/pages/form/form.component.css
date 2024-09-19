@@ -4,6 +4,7 @@ form {
   gap: 16px;
   background-color: rgb(233, 233, 233);
   padding: 32px;
+  border-radius: 8px;
 
   .form-group {
     label {
@@ -37,4 +38,11 @@ input {
 .validation-error {
   color: red;
   font-weight: 400;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 72px;
+  gap: 12px;
 }
