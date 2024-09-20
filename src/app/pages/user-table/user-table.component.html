@@ -1,6 +1,9 @@
 <div class="container-table">
   <h2>Table User</h2>
-  <button (click)="router.navigate(['add'])" class="new-data">Add new data</button>
+  <div class="top-table">
+    <input type="text" [formControl]="search">
+    <button (click)="router.navigate(['add'])" class="new-data">Add new data</button>
+  </div>
   <div *ngIf="users.length === 0" class="no-data">
     {{ isLoading ? "Loading..." : "No Data available" }}
   </div>
@@ -61,7 +64,7 @@
           <input
             type="checkbox"
             [(ngModel)]="user.isChecked"
-            (change)="onChangeCheckbox(i, $event)"
+            (change)="onChangeCheckbox(user?.id, $event)"
           />
         </td>
       </tr>

@@ -71,3 +71,10 @@ tr button:hover {
     width: 12rem;
     align-self: flex-end;
 }
+
+.top-table {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
