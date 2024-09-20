@@ -1,8 +1,17 @@
 <div class="container-table">
   <h2>Table User</h2>
   <div class="top-table">
-    <input type="text" [formControl]="search">
-    <button (click)="router.navigate(['add'])" class="new-data">Add new data</button>
+    <div class="input-search">
+      <input
+        type="text"
+        [formControl]="search"
+        placeholder="Search name..."
+        (input)="onChangeLoading()"
+      /><mat-spinner diameter="12" *ngIf="isLoadingSearch"></mat-spinner>
+    </div>
+    <button (click)="router.navigate(['add'])" class="new-data">
+      Add new data
+    </button>
   </div>
   <div *ngIf="users.length === 0" class="no-data">
     {{ isLoading ? "Loading..." : "No Data available" }}

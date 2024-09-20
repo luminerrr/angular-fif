@@ -1,80 +1,99 @@
 table {
-    position: relative;
+  position: relative;
 }
 
 .zui-table {
-    border: solid 1px #DDEEEE;
-    border-collapse: collapse;
-    border-spacing: 0;
-    font: normal 13px Arial, sans-serif;
-    width: 100%;
-    overflow-y: unset;
+  border: solid 1px #ddeeee;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font: normal 13px Arial, sans-serif;
+  width: 100%;
+  overflow-y: unset;
 }
 .zui-table thead th {
-    background-color: #DDEFEF;
-    border: solid 1px #DDEEEE;
-    padding: 10px;
-    text-align: left;
-    text-shadow: 1px 1px 1px #fff;
+  background-color: #ddefef;
+  border: solid 1px #ddeeee;
+  padding: 10px;
+  text-align: left;
+  text-shadow: 1px 1px 1px #fff;
 }
 .zui-table tbody td {
-    border: solid 1px #DDEEEE;
-    padding: 10px;
-    text-shadow: 1px 1px 1px #fff;
+  border: solid 1px #ddeeee;
+  padding: 10px;
+  text-shadow: 1px 1px 1px #fff;
 }
 
 .striked {
-    text-decoration: line-through;
-    background: rgb(189, 189, 189);
+  text-decoration: line-through;
+  background: rgb(189, 189, 189);
 }
 
 .no-data {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
 }
 
 tr:hover {
-    cursor: pointer;
-    background-color: #e4e4e4;
+  cursor: pointer;
+  background-color: #e4e4e4;
 }
 
 tr button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 tr button:hover {
-    cursor: pointer;
-    background-color: #d1d1d1;
+  cursor: pointer;
+  background-color: #d1d1d1;
 }
 
 .table-loading {
-    background: #616161;
-    opacity: 0.5;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    z-index: 20;
+  background: #616161;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 20;
 }
 
 .container-table {
-    display: flex !important;
-    flex-direction: column;
-    padding: 72px;
-    gap: 12px;
+  display: flex !important;
+  flex-direction: column;
+  padding: 72px;
+  gap: 12px;
 }
 
 .new-data {
-    height: 48px;
-    width: 12rem;
-    align-self: flex-end;
+  height: 48px;
+  width: 12rem;
+  align-self: flex-end;
 }
 
 .top-table {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-search {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid black;
+  align-items: center;
+  height: 48px;
+  border-radius: 4px;
+  width: 12rem;
+}
+
+.input-search input {
+    border: 0px;
+}
+
+.input-search input:focus {
+    border: 0;
+    outline: 0;
 }

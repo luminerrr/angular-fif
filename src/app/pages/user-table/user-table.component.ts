@@ -15,11 +15,17 @@ import { DataUser } from '../../models/app.model';
 import { HttpService } from '../../../service/http-service/http.service';
 import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-user-table',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './user-table.component.html',
   styleUrl: './user-table.component.css',
 })
@@ -31,6 +37,7 @@ export class UserTableComponent implements OnInit {
   isDue!: number;
   isLoading: boolean = false;
   search = new FormControl<string | null>('');
+  isLoadingSearch: boolean = false;
 
   constructor(
     private userService: UserdataService,
@@ -43,7 +50,7 @@ export class UserTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.search.valueChanges.pipe(debounceTime(1000)).subscribe((value) => {
-      this.getUsersData(value)
+      this.getUsersData(value);
     });
   }
 
@@ -100,6 +107,18 @@ export class UserTableComponent implements OnInit {
       next: (response: any) => {
         this.users = response;
       },
+      error: (error) => {
+        if (error.status === 404) {
+          this.users = [];
+        }
+      },
+      complete: () => {
+        this.isLoadingSearch = false;
+      },
     });
+  }
+
+  onChangeLoading() {
+    this.isLoadingSearch = true;
   }
 }
