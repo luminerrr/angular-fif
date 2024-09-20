@@ -7,8 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { DataUser } from '../../models/app.model';
-import { SnackbarService } from '../../shared/snackbar.service';
-import { HttpService } from '../../shared/http-service/http.service';
+import { SnackbarService } from '../../../service/snackbar.service';
+import { HttpService } from '../../../service/http-service/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -23,6 +23,7 @@ export class FormComponent {
   minDate!: string;
   pathId!: string | null;
   isLoading: boolean = false;
+  userDetail!: DataUser | any;
 
   constructor(
     private snackbar: SnackbarService,
@@ -55,6 +56,7 @@ export class FormComponent {
       this.isLoading = true
       http.getDataById('/rakamin/employee', this.pathId).subscribe({
         next: (response: any) => {
+          this.userDetail = response;
           this.addUserForm.get('name')?.setValue(response?.name);
           this.addUserForm.get('email')?.setValue(response?.email);
           this.addUserForm
@@ -90,7 +92,7 @@ export class FormComponent {
         city: this.addUserForm.get('city')?.value,
         province: this.addUserForm.get('province')?.value,
         zipcode: this.addUserForm.get('zipCode')?.value,
-        isChecked: false,
+        isChecked: this.userDetail ? this.userDetail?.isChecked : false,
         age: this.addUserForm.get('age')?.value,
         basicSalary: this.addUserForm.get('basicSalary')?.value,
       };
